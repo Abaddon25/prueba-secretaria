@@ -1,0 +1,86 @@
+<div class="container mt-5 p-4 bg-light content-items">
+   <div class="row m-4">
+      <div class="col">
+         <h1>Productos</h1>
+      </div>
+   </div>
+   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="row m-3">
+         <div class="col">
+            <label for="name" class="form-label">Nombre producto</label>
+            <input type="text" class="form-control" id="name" formControlName="Name" placeholder="Silla" />
+         </div>
+         <div class="col">
+            <label for="description" class="form-label">Descripcion producto</label>
+            <input type="text" class="form-control" id="description" formControlName="Description" placeholder="Silla del escritorio" />
+         </div>
+      </div>
+      <div class="row m-3">
+         <div class="col">
+            <label for="serial" class="form-label">Serial producto</label>
+            <input type="text" class="form-control" id="serial" formControlName="Serial" placeholder="654513FD21ASD3ADS54A6S5" />
+         </div>
+         <div class="col">
+            <label for="price" class="form-label">Precio producto</label>
+            <div class="input-group">
+               <span class="input-group-text">$</span>
+               <input id="price" type="number" class="form-control" formControlName="Price" aria-label="Amount (to the nearest dollar)" />
+               <span class="input-group-text">.00</span>
+            </div>
+         </div>
+      </div>
+      <div class="row m-3">
+         <div class="col">
+            <label for="date" class="form-label">Fecha</label>
+            <input type="text" class="form-control" id="date" formControlName="Date" placeholder="2022/01/11" />
+         </div>
+         <div class="col">
+            <label for="quantity" class="form-label">Cantidad producto</label>
+            <input type="number" class="form-control" id="quantity" formControlName="Quantity" placeholder="5" />
+         </div>
+      </div>
+      <div class="row m-3">
+         <div class="col">
+            <label for="description" class="form-label">Tipo de producto</label>
+            <select class="form-select" aria-label="Default select example" formControlName="Type">
+               <option [value]="null">Seleccione un tipo de producto</option>
+               <option [value]="item.id" *ngFor="let item of types">{{ item.Name }}</option>
+            </select>
+         </div>
+         <div class="col">
+            <label for="nombre" class="form-label">Estado del producto</label>
+            <select class="form-select" aria-label="Default select example" formControlName="State">
+               <option [value]="null">Seleccione un estado para el producto</option>
+               <option [value]="item.id" *ngFor="let item of states">{{ item.Name }}</option>
+            </select>
+         </div>
+      </div>
+      <div class="row m-3">
+         <div class="col">
+            <label for="description" class="form-label">Area del producto</label>
+            <select class="form-select" aria-label="Default select example" formControlName="Area">
+               <option [value]="null">Seleccione un area</option>
+               <option [value]="item.id" *ngFor="let item of areas">{{ item.Name }}</option>
+            </select>
+         </div>
+         <div class="col">
+            <label for="description" class="form-label">Usuario del producto</label>
+            <select class="form-select" aria-label="Default select example" formControlName="User">
+               <option [value]="null">Seleccion un usuario</option>
+               <option [value]="item.id" *ngFor="let item of users">{{ item.Name }}</option>
+            </select>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col">
+            <button type="submit" class="btn btn-secondary me-2" [disabled]="productForm.invalid">Guardar</button>
+            <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancelar</button>
+         </div>
+      </div>
+   </form>
+   <div class="row mt-5">
+      <div class="col">
+         <app-table [_modelTable]="modelTable" (eventEmitter)="receiveEvent($event)"></app-table>
+      </div>
+   </div>
+</div>

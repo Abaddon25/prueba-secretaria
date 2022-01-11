@@ -1,0 +1,34 @@
+<div class="container mt-5 p-4 bg-light content-items">
+   <div class="row m-4">
+      <div class="col">
+         <h1>Usuarios</h1>
+      </div>
+   </div>
+   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="row m-3">
+         <div class="col">
+            <label for="name" class="form-label">Nombre del usuario</label>
+            <input type="text" class="form-control" id="name" formControlName="Name" placeholder="Pepito Perez" />
+         </div>
+         <div class="col">
+            <label for="email" class="form-label">Correo electronico del usuario</label>
+            <input type="email" class="form-control" id="email" formControlName="Email" placeholder="name@example.com" />
+         </div>
+         <div class="col">
+            <label for="password" class="form-label">Contrase del usuario</label>
+            <input type="password" class="form-control" id="password" formControlName="Password" placeholder="12345678" />
+         </div>
+      </div>
+      <div class="row">
+         <div class="col">
+            <button type="submit" class="btn btn-secondary me-2" [disabled]="userForm.invalid">Guardar</button>
+            <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancelar</button>
+         </div>
+      </div>
+   </form>
+   <div class="row mt-5">
+      <div class="col">
+         <app-table [_modelTable]="modelTable" (eventEmitter)="receiveEvent($event)"></app-table>
+      </div>
+   </div>
+</div>

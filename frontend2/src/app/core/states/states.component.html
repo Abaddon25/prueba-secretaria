@@ -1,0 +1,30 @@
+<div class="container mt-5 p-4 bg-light content-items">
+   <div class="row m-4">
+      <div class="col">
+         <h1>Estados de los productos</h1>
+      </div>
+   </div>
+   <form [formGroup]="stateForm" (ngSubmit)="onSubmit()">
+      <div class="row m-3">
+         <div class="col">
+            <label for="nombre" class="form-label">Nombre estado</label>
+            <input type="text" class="form-control" id="nombre" formControlName="Name" placeholder="activo" />
+         </div>
+         <div class="col">
+            <label for="description" class="form-label">Descripcion estado</label>
+            <input type="text" class="form-control" id="description" formControlName="Description" placeholder="Estado activo" />
+         </div>
+      </div>
+      <div class="row">
+         <div class="col">
+            <button type="submit" class="btn btn-secondary me-2" [disabled]="stateForm.invalid">Guardar</button>
+            <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancelar</button>
+         </div>
+      </div>
+   </form>
+   <div class="row mt-5">
+      <div class="col">
+         <app-table [_modelTable]="modelTable" (eventEmitter)="receiveEvent($event)"></app-table>
+      </div>
+   </div>
+</div>

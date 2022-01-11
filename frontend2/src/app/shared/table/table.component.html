@@ -1,0 +1,17 @@
+<table class="table table-striped">
+   <thead>
+      <tr>
+         <th scope="col" *ngFor="let column of columns">{{ column }}</th>
+         <th>Acciones</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr *ngFor="let row of rows">
+         <th *ngFor="let column of returnKeys(row); let i = index">{{ row[column] }}</th>
+         <th>
+            <button type="button" class="btn btn-secondary me-2" (click)="emitterEvent('edit', row)">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="emitterEvent('delete', row)">Eliminar</button>
+         </th>
+      </tr>
+   </tbody>
+</table>

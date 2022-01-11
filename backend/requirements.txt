@@ -1,0 +1,4 @@
+django==4.0.1
+djangorestframework==3.13.1
+django-cors-headers==3.10.1
+mssql-django==1.1.1
