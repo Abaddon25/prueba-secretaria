@@ -1,46 +1,46 @@
-version: '3.5'
+version: "3.5"
 
-services: 
-    mssql:
-        container_name: mssql
-        hostname: mssql
-        image: mcr.microsoft.com/mssql/server
-        restart: unless-stopped
-        command: /bin/bash ./entrypoint.sh
-        ports:
-            - "1433:1433"
-        environment:
-            - "ACCEPT_EULA=Y"
-            - "SA_PASSWORD=Operez2015"
-        volumes: 
-            - "./data:/var/opt/mssql/data"   
-            - "./data/commands/entrypoint.sh:/entrypoint.sh"
-            - "./data/commands/db-init.sh:/db-init.sh"
-            - "./data/commands/db-init.sql:/db-init.sql"
-    front-end:
-        container_name: frontend-secretaria
-        hostname: frontend-secretaria
-        image: secretaria:frontend
-        restart: unless-stopped
-        build:
-            context: ./frontend2
-            dockerfile: ./Dockerfile
-            target: ${ENV_TYPE}
-        ports:
-            - "4200:${PORT_ANG}"
-        volumes:
-            - "./frontend2:/app"
-    back-end:
-        container_name: backend-secretaria
-        hostname: backend-secretaria
-        image: secretaria:backend        
-        build: 
-            context: ./backend
-            dockerfile: ./Dockerfile
-        ports: 
-            - "8000:8000"
-        volumes:
-            - "./backend/base:/base" 
-        depends_on: 
-            - mssql
-        
+services:
+  mssql:
+    container_name: mssql
+    hostname: mssql
+    user: root
+    image: mcr.microsoft.com/mssql/server
+    restart: unless-stopped
+    command: /bin/bash ./entrypoint.sh
+    ports:
+      - "1433:1433"
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=Operez2015"
+    volumes:
+      - "./data:/var/opt/mssql/data"
+      - "./data/commands/entrypoint.sh:/entrypoint.sh"
+      - "./data/commands/db-init.sh:/db-init.sh"
+      - "./data/commands/db-init.sql:/db-init.sql"
+  front-end:
+    container_name: frontend-secretaria
+    hostname: frontend-secretaria
+    image: secretaria:frontend
+    restart: unless-stopped
+    build:
+      context: ./frontend2
+      dockerfile: ./Dockerfile
+      target: ${ENV_TYPE}
+    ports:
+      - "4200:${PORT_ANG}"
+    volumes:
+      - "./frontend2:/app"
+  back-end:
+    container_name: backend-secretaria
+    hostname: backend-secretaria
+    image: secretaria:backend
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./backend/base:/base"
+    depends_on:
+      - mssql
