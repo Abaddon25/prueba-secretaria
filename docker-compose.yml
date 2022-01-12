@@ -7,7 +7,7 @@ services:
     user: root
     image: mcr.microsoft.com/mssql/server
     restart: unless-stopped
-    command: /bin/bash ./entrypoint.sh
+    command: /bin/sh ./entrypoint.sh
     ports:
       - "1433:1433"
     environment:

@@ -1,27 +1,75 @@
-# FrontEnd
+# <b>Secretaria</b>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+Proyecto desarrollado para el manejo de un inventario de productos
 
-## Development server
+## <b>Tecnologias utilizadas</b>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### <b>Front-end</b>
 
-## Code scaffolding
+Angular 13
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### <b>back-end</b>
 
-## Build
+Python 3.9 con django framework
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### <b>Base de datos</b>
 
-## Running unit tests
+SQL Server
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### <b>Despliegue</b>
 
-## Running end-to-end tests
+Docker<br/>
+Docker-compose
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## <b>Instalaciones necesarias para el ambiente local</b>
 
-## Further help
+angular cli version 13.1.2 <br/>
+python 3.9<br/>
+docker 20.10.10<br/>
+docker-compose 1.29.2<br/>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## <b>Descarga de codigo fuente y instalacion local</b>
+
+Se debe clonar el repositorio para la descaga del codigo fuente del proyecto con el siguiente comando `git clone https://github.com/Abaddon25/prueba-secretaria.git`, <br/>
+
+Una vez descargado el codigo fuente se debe ingresar a la carpeta que se descargo y se debe seguir los siguentes pasos para la puesta en marcha del proyecto: <br/>
+
+### <b>Front-end</b>
+
+Se debe ingresar a la carpeta frontend por linea de comandos `cd frontend2` desde la raiz de la carpeta descargada.<br/>
+Dentro de la carpeta del front end se debe correr el comando `npm install`. <br/>
+
+### <b>Back-end</b>
+
+Se debe ingresar a la carpeta backend por linea de comandos `cd backend` desde la raiz de la carpeta descargada.<br/>
+Se debe crear el ambiente virtual para el proyecto de back end con el siguiente comando `virtualenv env`. <br/>
+Una vez creada el ambiente se debe correr el siguiente comando para la instalacion de las dependencias del proyecto `pip install -r requirements.txt`. <br/>
+
+### <b>Despliegue y cargue del ambiente de desarrollo</b>
+
+Nota: Este ambiente esta configurado para que actualice y vuelva a cargar los ultimos cambios realizados.<br/>
+
+Para el despliegue del ambiente de desarrollo se debe correr el siguente comando para la creacion de los docker tanto front, back y base de datos:
+`docker-compose --env-file docker.config.env.dev up -d --build`
+
+#### <b>Esto se debe solo realizar la primera vez despues de descargar el repo</b>
+En windows nos saldra una alerta de permisos sobre las carpetas del proyecto a medida que va cargando la instancia, se debe aceptar todas las solicitudes.
+
+Una vez subido el ambiente se debe conectarse al docker de mssql con el siguiente comando `docker exec -it mssql /bin/sh` una vez a al interior del contenedor debe correr el siguiente comando  `entrypoint.sh`.<br/>
+
+Debemos subir y bajar el ambiente para que tome los cambiso realizados sobre la base de datos con los siguientes comandos
+`docker-compose --env-file docker.config.env.dev down`
+`docker-compose --env-file docker.config.env.dev up -d --build`
+
+## <b>Revision despliegue</b>
+
+Para el monitoreo del despliegue se puede ejecutar los siguientes comandos<br/>
+## Visual correctamente proyecto desplegado 
+docker logs backend-secretaria<br/>
+![Optional Text](./img/back.png)
+
+docker logs frontend-secretaria<br/>
+![Optional Text](./img/front.png)
+
+docker logs mssql<br/>
+![Optional Text](./img/mssql.png)

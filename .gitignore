@@ -2,6 +2,7 @@
 *.bin
 *.ldf
 *.mdf
+*.ndf
 # compiled output
 /dist
 /tmp
