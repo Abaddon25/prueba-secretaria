@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'inventarios',
         'USER': 'sa',
         'PASSWORD': 'Operez2015',
-        'HOST': '35.184.44.43',
+        'HOST': 'mssql',
         'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server'
